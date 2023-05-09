@@ -1,0 +1,177 @@
+@import url("root.css");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: var(--background-color);
+  font-size: clamp(0.65em, 1.5vw, 1.5em);
+}
+
+.container-box {
+  width: auto;
+  height: auto;
+  background: var(--bg-box-color);
+  color: var(--font-color);
+  top: 5%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  box-sizing: border-box;
+  padding: 4.375em 1.875em;
+  border-radius: 1.25em;
+  
+}
+
+span{
+  top: 0.8em;
+  position:absolute;
+  font-size: 2em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+span:hover{
+  transform: scale(1.2);
+}
+
+h1{
+  text-align: center;
+  white-space: nowrap;
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+  
+.register-box {
+  position: relative;
+  
+}
+
+.register-box input {
+  width: 100%;
+  padding: 0.625em 0;
+  font-size: 1em;
+  color: var(--font-color);
+  margin-bottom: 1.875em;
+  border: none;
+  border-bottom: 0.0625em solid var(--secondary-color);
+  outline: none;
+  background: transparent;
+}
+
+.register-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.625em 0;
+  font-size: 1em;
+  color: var(--font-color);
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.register-box input.focused ~ label,
+.register-box input.focused:valid ~ label {
+  top: -1.25em;
+  left: 0;
+  color: var(--label-hover-color);
+  font-size: 0.75em;
+}
+
+button {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 2.5em;
+  background: var(--primary-color);
+  color: var(--font-color);
+  border-radius: 1.25em;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  letter-spacing: 0.05em;
+  font-size: 1.125em;
+}
+
+button:hover {
+  background: var(--hover-color);
+  color: var(--cofonte);
+  transform: translateY(-0.125em);
+}
+    
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 0.1em solid var(--secondary-color);
+  padding: 0.5em;
+}
+
+th {
+  background: var(--primary-color);
+  color: var(--font-color);
+  font-weight: bold;
+  text-align: left;
+}
+
+td{
+  white-space: nowrap;
+  left: 0;
+}
+
+#divImg{
+  display:flex;
+  justify-content: space-around;
+}
+
+td img {
+  cursor: pointer;
+  margin: 0 0.1em;
+  width: 1.5em;
+  transition: all 0.2s ease-in-out;
+}
+td img:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+}
+
+#buttons{
+  display: flex;
+  gap: 2em;
+}
+
+.result table {
+  border-collapse: separate;
+  border-spacing: 0 0.3em;
+}
+.result tr {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.result table tbody tr td {
+  padding: 1em;
+  margin-bottom: 0.5em;
+  border: none;
+  background-color: var(--background-color-table);
+}
+
+.result table tbody tr td:first-child {
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.result table tbody tr td:last-child {
+    border-top-right-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+}
+
+.result table tbody tr td + td {
+    border-left: none;
+    margin-left: -1px;
+}

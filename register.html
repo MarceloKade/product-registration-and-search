@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container-box">
+        <a href="search.html" title="Search for registered products">
+            <span>🔍</span>
+        </a>
+        <header>
+            <h1 class="title">Product Registration</h1>
+        </header>
+        <main>
+            <form>
+                <section class="register-box">
+                    <input id="product" type="text" name="product" autocomplete="off"
+                        onfocus="this.classList.add('focused'); this.placeholder = 'Enter the product name'"
+                        onblur="if(!this.value) { this.classList.remove('focused'); } this.placeholder = ''">
+                    <label for="product">Product Name</label>
+
+                </section>
+
+                <section class="register-box">
+                    <input id="price" type="text" name="price" autocomplete="off"
+                        onfocus="this.classList.add('focused'); this.placeholder = 'R$ 0,00'"
+                        onblur="if(!this.value) { this.classList.remove('focused'); } this.placeholder = ''">
+                    <label for="price">Product Price</label>
+                </section>
+                <div id="buttons">
+                    <button type="submit" id="register">Register</button>
+                </div>
+            </form>
+            <section>
+                <h2>Registered Products:</h2>
+                <table>
+                    <thead>
+                        <th>id</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody id="tbody">
+
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="js/register.js"></script>
+</body>
+
+</html>

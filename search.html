@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca de Produtos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container-box">
+        <a href="register.html" title="register a new product">
+            <span>📝</span>
+        </a>
+        <header>
+            <h1 class="title">Product Search</h1>
+        </header>
+        <main>
+            <form class="register-box">
+                <input id="search" type="text" name="search" autocomplete="off"
+                    onfocus="this.classList.add('focused'); this.placeholder = 'Enter the product ID or name'"
+                    onblur="if(!this.value) { this.classList.remove('focused'); } this.placeholder = ''">
+                <label for="search">Name</label>
+            </form>
+            <div class="result">
+                <table>
+                    <tbody id="result-list">
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script src="js/search.js"></script>
+
+</body>
+
+</html>
