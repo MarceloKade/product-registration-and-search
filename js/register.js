@@ -91,8 +91,6 @@ class Product {
             if (this.editId !== null && this.productArray[i].id === this.editId) {
                 this.editId = null;
             }
-
-            this.scrollProduct(this.productArray[i].id);
         }
     }
 
@@ -136,9 +134,13 @@ class Product {
                 this.add(product);
                 this.listTable();
                 const newRow = document.getElementById(`product-${product.id}`);
-                this.setBackgroundForPeriod(newRow, 'rgba(255, 255, 255, 0.2)', 3000);
+                this.setBackgroundForPeriod(newRow, 'rgba(255, 255, 255, 0.2)', 2000);
+                newRow.scrollIntoView({ behavior: "smooth" });
+                newRow.focus();
+
             } else {
-                this.update(this.editId, product);
+                const prevEditId = this.editId;
+                this.update(prevEditId, product);
                 this.editId = null;
                 const divButtons = document.getElementById('buttons');
                 const updateButton = document.getElementById('update');
@@ -147,7 +149,12 @@ class Product {
                 registerButton.id = 'register';
                 registerButton.textContent = 'Register';
                 divButtons.appendChild(registerButton);
+                const editRow = document.getElementById(`product-${prevEditId}`);
+                this.setBackgroundForPeriod(editRow, 'rgba(255, 255, 255, 0.2)', 2000);
+                editRow.scrollIntoView({ behavior: "smooth", block: "center" });
+                editRow.focus();
             }
+
             this.inputClear();
             this.saveListLocalStorage();
             this.removeCancelButton()
@@ -203,10 +210,23 @@ class Product {
     }
 
     ValidateFields(product) {
-        let msg = '';
+        let errors = [];
+
+        if (product.nameProduct.trim() === '') {
+            errors.push('--Please enter a product name.');
+        }
+
+        if (product.price === '') {
+            errors.push('--Please enter a product price.');
+        }
+
+        if (errors.length > 0) {
+            alert(errors.join('\n'));
+            return false;
+        }
+
         return true;
     }
-
 
     delete(id) {
         const tbody = document.getElementById("tbody");
@@ -245,8 +265,6 @@ class Product {
         this.listTable();
     }
 
-
-
     saveListLocalStorage() {
         localStorage.setItem('productArray', JSON.stringify(this.productArray));
     }
@@ -261,44 +279,22 @@ class Product {
         }
     }
 }
+
 const product = new Product();
 window.scrollTo(0, 0);
 
 const form = document.querySelector('form');
 
-function validateInput(nameProduct, price) {
-    let msg = '';
-    if (nameProduct.trim() === '') {
-        msg += '- Enter the product name \n';
-    }
-    if (price.trim() === '') {
-        msg += '- Enter the product price \n';
-    }
-
-    if (msg !== '') {
-        alert(msg);
-        return false;
-    }
-    return true;
-}
-
 form.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    if (nameProduct.value.trim() === '') {
-        validateInput(nameProduct.value, priceInput.value);
-        return;
-    }
-
-    if (number === undefined || formatter === undefined) {
-        validateInput(nameProduct.value, priceInput.value);
+    if (!product.ValidateFields({ nameProduct: nameProduct.value, price: priceInput.value })) {
         return;
     }
 
     priceInput.value = formatter.format(number).replace('R$', '').trim();
     product.save();
 });
-
 
 const nameProduct = document.getElementById('product');
 const priceInput = document.getElementById('price');
