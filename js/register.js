@@ -11,9 +11,6 @@ class Product {
     }
 
     restart() {
-        this.id = 1;
-        this.productArray = [];
-        this.editId = null;
         const divButtons = document.getElementById('buttons');
         const updateButton = document.getElementById('update');
         updateButton.remove();
